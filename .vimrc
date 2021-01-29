@@ -1,4 +1,10 @@
 
+" Keymaps
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-L> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype off
@@ -73,3 +79,7 @@ Plug 'preservim/nerdtree'
 call plug#end()
 
 " autocmd vimenter * NERDTree
+
+packadd! dracula
+syntax enable
+colorscheme dracula
