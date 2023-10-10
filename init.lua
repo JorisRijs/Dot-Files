@@ -1,0 +1,1 @@
+/Users/jorisrijs/.config/nvim/init.lua
