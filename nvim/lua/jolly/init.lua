@@ -1,5 +1,6 @@
 require("jolly.remap")
 require("jolly.packer")
+require("jolly.autocmd")
 
 -- Show matching brackets
 vim.o.showmatch = true

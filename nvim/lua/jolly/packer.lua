@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
 
     use 'nvim-tree/nvim-tree.lua'
     use 'nvim-tree/nvim-web-devicons'
+    use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
+    use 'romgrk/barbar.nvim'
     use 'mbbill/undotree'
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -38,8 +40,7 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-nvim-lsp'},
             {'L3MON4D3/LuaSnip'},
         }
-    } 
-
+    }
     use {
         'numToStr/Comment.nvim',
         config = function()
