@@ -47,6 +47,14 @@ require'lspconfig'.pylsp.setup{
   }
 }
 
+require'lspconfig'.terraformls.setup{}
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
 lsp.setup()
 
 -- see :help lsp-zero-guide:integrate-with-mason-nvim
