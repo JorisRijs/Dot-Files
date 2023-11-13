@@ -32,6 +32,8 @@ vim.o.shiftwidth = 4
 -- See multiple spaces as tabstops so <BS> does the right thing
 vim.o.softtabstop = 4
 
+vim.o.mouse = "a"
+
 vim.wo.relativenumber=true
 
 vim.api.nvim_set_option("clipboard", "unnamed")
