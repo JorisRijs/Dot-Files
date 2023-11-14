@@ -9,3 +9,4 @@ map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 
 -- close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', 'ç', '<Cmd>BufferClose<CR>', opts)

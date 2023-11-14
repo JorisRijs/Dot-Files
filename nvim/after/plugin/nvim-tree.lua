@@ -1,5 +1,5 @@
 -- keybindgs
-vim.keymap.set("n", "<leader>pv", vim.cmd.NvimTreeFocus)
+vim.keymap.set("n", "<leader>tf", vim.cmd.NvimTreeFocus)
 vim.keymap.set("n", "<leader>tc", vim.cmd.NvimTreeClose)
 
 -- disable netrw at the very start of your init.lua
@@ -11,6 +11,7 @@ vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup()
+
 
 -- OR setup with some options
 require("nvim-tree").setup({
