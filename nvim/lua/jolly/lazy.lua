@@ -28,16 +28,16 @@ local plugins = {
    },
    {
        'nvim-treesitter/nvim-treesitter',
-       cmd = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
+       --cmd = function()
+       --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+       --     ts_update()
+       -- end,
    },
    {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {'nvim-tree/nvim-web-devicons', opt = true},
    },
-   {'catppuccin/nvim', name = 'catppuccin'},
+   {'catppuccin/nvim', name = 'catppuccin', lazy=true},
 
    'nvim-tree/nvim-tree.lua',
    'nvim-tree/nvim-web-devicons',
@@ -65,12 +65,13 @@ local plugins = {
             'rafamadriz/friendly-snippets',
 	},
    },
-   {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
+    {
+    'numToStr/Comment.nvim',
+    cmd = function()
+	require('Comment').setup()
+    end
    },
+
 
 }
 

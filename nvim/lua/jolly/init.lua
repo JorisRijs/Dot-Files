@@ -1,5 +1,5 @@
 require("jolly.remap")
-require("jolly.packer")
+require("jolly.lazy")
 require("jolly.autocmd")
 
 -- Show matching brackets
