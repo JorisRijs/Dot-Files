@@ -44,6 +44,7 @@ local plugins = {
    'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
    'romgrk/barbar.nvim',
    'mbbill/undotree',
+   {'akinsho/toggleterm.nvim', version = "*", config = true},
    {
 	'VonHeikemen/lsp-zero.nvim',
 	branch = 'v3.x',
@@ -57,7 +58,6 @@ local plugins = {
             -- Autocompletion
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
-            'L3MON4D3/LuaSnip',
             -- Snippet Engine & its associated nvim-cmp source
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
@@ -71,7 +71,9 @@ local plugins = {
 	require('Comment').setup()
     end
    },
-
+    {
+      {'akinsho/toggleterm.nvim', version = "*", config = true}
+    },
 
 }
 
