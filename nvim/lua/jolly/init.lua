@@ -12,7 +12,7 @@ vim.o.ignorecase = true
 vim.o.mouse = "v"
 
 -- Highlight search results
-vim.o.hlsearch = true
+vim.o.hlsearch = false 
 
 -- Indent a new line the same amount as the line just typed
 vim.o.autoindent = true

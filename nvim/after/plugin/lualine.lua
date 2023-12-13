@@ -1,4 +1,4 @@
-local custom_powerline_dark = require'lualine.themes.powerline_dark'
+local custom_powerline_dark = require('lualine.themes.powerline_dark')
 
 local colors = {
   red = '#ca1243',

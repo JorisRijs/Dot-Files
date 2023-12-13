@@ -20,7 +20,8 @@ local plugins = {
        tag = '0.1.4',
        dependencies = {
 	    'nvim-lua/plenary.nvim',
-	    "nvim-telescope/telescope-live-grep-args.nvim"
+	    "nvim-telescope/telescope-live-grep-args.nvim",
+            "folke/todo-comments.nvim",
        },
         config = function()
             require("telescope").load_extension("live_grep_args")
@@ -38,6 +39,7 @@ local plugins = {
 	dependencies = {'nvim-tree/nvim-web-devicons', opt = true},
    },
    {'catppuccin/nvim', name = 'catppuccin', lazy=true},
+   { "folke/tokyonight.nvim", lazy = false, priority = 1000,opts = {} },
 
    'nvim-tree/nvim-tree.lua',
    'nvim-tree/nvim-web-devicons',
@@ -58,6 +60,9 @@ local plugins = {
             -- Autocompletion
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
             -- Snippet Engine & its associated nvim-cmp source
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
@@ -65,6 +70,7 @@ local plugins = {
             'rafamadriz/friendly-snippets',
 	},
    },
+   -- FIXME: add correct config 
     {
     'numToStr/Comment.nvim',
     cmd = function()
