@@ -70,6 +70,11 @@ local plugins = {
             'rafamadriz/friendly-snippets',
 	},
    },
+   -- Debugging plugins
+   'mfussenegger/nvim-dap',
+   'mfussenegger/nvim-dap-python',
+   'rcarriga/nvim-dap-ui',
+
    -- FIXME: add correct config 
     {
     'numToStr/Comment.nvim',
