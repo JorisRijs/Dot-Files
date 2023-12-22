@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lsp_config = require('lspconfig')
 
 lsp.preset("recommended")
 
@@ -10,6 +11,12 @@ require('luasnip.loaders.from_vscode')
 luasnip.config.setup{}
 
 cmp.setup{
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }, -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  }),
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -67,7 +74,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "C-h", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-require'lspconfig'.pylsp.setup{
+lsp_config.pylsp.setup{
   settings = {
     pylsp = {
       configurationSources = {"pydocstyle", "pycodestyle"},
@@ -85,19 +92,25 @@ require'lspconfig'.pylsp.setup{
   }
 }
 
-require'lspconfig'.pyright.setup({
+lsp_config.pyright.setup({
   on_attach = lsp.on_attach,
   capabilities = lsp.capabilities,
   filetypes = {"python"},
 })
 
-require'lspconfig'.terraformls.setup{}
+lsp_config.terraformls.setup({})
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
   callback = function()
     vim.lsp.buf.format()
   end,
 })
+lsp_config.lua_ls.setup({})
+lsp_config.bashls.setup({})
+lsp_config.dotls.setup({})
+lsp_config.ltex.setup({})
+lsp_config.yamlls.setup({})
+lsp_config.jsonls.setup({})
 
 lsp.setup()
 
@@ -110,7 +123,13 @@ require('mason-lspconfig').setup({
         'pyright',
         'lua_ls',
         'pylsp',
-        'terraformls'
+        'terraformls',
+        'bashls',
+        'dotls',
+        'jsonls',
+        'ltex',
+        'yamlls',
+        'jsonls'
     },
     handlers = {
         lsp.default_setup,

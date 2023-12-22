@@ -77,10 +77,7 @@ local plugins = {
 
    -- FIXME: add correct config 
     {
-    'numToStr/Comment.nvim',
-    cmd = function()
-	require('Comment').setup()
-    end
+    'numToStr/Comment.nvim', opts = {}, lazy = false,
    },
     {
       {'akinsho/toggleterm.nvim', version = "*", config = true}

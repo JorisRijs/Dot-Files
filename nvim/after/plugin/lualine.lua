@@ -9,7 +9,6 @@ local colors = {
   orange = '#fe8019',
   green = '#8ec07c',
 }
-
 custom_powerline_dark.insert.a.fg = colors.white
 
 require('lualine').setup{
@@ -24,7 +23,7 @@ require('lualine').setup{
 	},
 	ignore_focus = {},
 	always_divide_middle = true,
-	globalstatus = false,
+	globalstatus = true,
 	refresh = {
 	  statusline = 1000,
 	  tabline = 1000,
