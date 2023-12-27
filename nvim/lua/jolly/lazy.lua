@@ -29,22 +29,25 @@ local plugins = {
    },
    {
        'nvim-treesitter/nvim-treesitter',
-       --cmd = function()
+       -- cmd = function()
        --     local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
        --     ts_update()
        -- end,
    },
+
+   -- UI related plugins
    {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {'nvim-tree/nvim-web-devicons', opt = true},
    },
    {'catppuccin/nvim', name = 'catppuccin', lazy=true},
    { "folke/tokyonight.nvim", lazy = false, priority = 1000,opts = {} },
-
+   'romgrk/barbar.nvim',
+   'levouh/tint.nvim',
    'nvim-tree/nvim-tree.lua',
    'nvim-tree/nvim-web-devicons',
+
    'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-   'romgrk/barbar.nvim',
    'mbbill/undotree',
    {'akinsho/toggleterm.nvim', version = "*", config = true},
    {
@@ -75,13 +78,8 @@ local plugins = {
    'mfussenegger/nvim-dap-python',
    'rcarriga/nvim-dap-ui',
 
-   -- FIXME: add correct config 
-    {
-    'numToStr/Comment.nvim', opts = {}, lazy = false,
-   },
-    {
-      {'akinsho/toggleterm.nvim', version = "*", config = true}
-    },
+    {'numToStr/Comment.nvim', opts = {}, lazy = false,},
+
     {
       "folke/which-key.nvim",
       event = "VeryLazy",
@@ -89,7 +87,10 @@ local plugins = {
         vim.o.timeout = true
         vim.o.timeoutlen = 300
       end,
-    }
+    },
+
+    -- Navigation related plugins
+    'nacro90/numb.nvim',
 
 }
 
