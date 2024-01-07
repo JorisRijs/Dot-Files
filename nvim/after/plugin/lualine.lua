@@ -14,9 +14,9 @@ custom_powerline_dark.insert.a.fg = colors.white
 require('lualine').setup{
     options = {
 	icons_enabled = true,
-	theme = 'custom_powerline_dark',
-	component_separators = { left = '', right = ''},
-	section_separators = { left = '', right = ''},
+	theme = 'ayu_mirage',
+	component_separators = { left = '|', right = '|'},
+	section_separators = { left = '', right = ''},
 	disabled_filetypes = {
 	  statusline = {},
 	  winbar = {},

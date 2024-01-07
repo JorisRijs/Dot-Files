@@ -15,6 +15,7 @@ local plugins = {
    'tpope/vim-fugitive',
    'tpope/vim-rhubarb',
    'tpope/vim-sleuth',
+   'folke/neodev.nvim',
    {
        'nvim-telescope/telescope.nvim',
        tag = '0.1.4',
@@ -46,9 +47,56 @@ local plugins = {
    'levouh/tint.nvim',
    'nvim-tree/nvim-tree.lua',
    'nvim-tree/nvim-web-devicons',
+   -- lazy.nvim
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- add any options here
+      },
+      dependencies = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+        }
+    },
+    {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end, dependencies = { {'nvim-tree/nvim-web-devicons'}}
+    },
+    {'glepnir/dbsession.nvim', cmd = { 'SessionSave', 'SessionDelete', 'SessionLoad'},
+      opts = {}
+    },
 
    'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
    'mbbill/undotree',
+   {
+    'cameron-wags/rainbow_csv.nvim',
+    config = true,
+    ft = {
+        'csv',
+        'tsv',
+        'csv_semicolon',
+        'csv_whitespace',
+        'csv_pipe',
+        'rfc_csv',
+        'rfc_semicolon'
+    },
+    cmd = {
+        'RainbowDelim',
+        'RainbowDelimSimple',
+        'RainbowDelimQuoted',
+        'RainbowMultiDelim'
+    }
+   },
    {'akinsho/toggleterm.nvim', version = "*", config = true},
    {
 	'VonHeikemen/lsp-zero.nvim',

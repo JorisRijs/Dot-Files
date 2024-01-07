@@ -55,7 +55,20 @@ cmp.setup{
     end, { 'i', 's' }),
   },
 }
-
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
+})
 
 lsp.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
@@ -111,6 +124,7 @@ lsp_config.dotls.setup({})
 lsp_config.ltex.setup({})
 lsp_config.yamlls.setup({})
 lsp_config.jsonls.setup({})
+lsp_config.rust_analyzer.setup({})
 
 lsp.setup()
 
@@ -129,7 +143,8 @@ require('mason-lspconfig').setup({
         'jsonls',
         'ltex',
         'yamlls',
-        'jsonls'
+        'jsonls',
+        'rust_analyzer'
     },
     handlers = {
         lsp.default_setup,
