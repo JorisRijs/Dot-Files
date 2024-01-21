@@ -125,6 +125,7 @@ lsp_config.ltex.setup({})
 lsp_config.yamlls.setup({})
 lsp_config.jsonls.setup({})
 lsp_config.rust_analyzer.setup({})
+lsp_config.marksman.setup({})
 
 lsp.setup()
 
@@ -144,7 +145,8 @@ require('mason-lspconfig').setup({
         'ltex',
         'yamlls',
         'jsonls',
-        'rust_analyzer'
+        'rust_analyzer',
+        'marksman'
     },
     handlers = {
         lsp.default_setup,
