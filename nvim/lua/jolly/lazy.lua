@@ -103,8 +103,6 @@ local plugins = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
 
-            -- LSP Support
-            'neovim/nvim-lspconfig',
             -- Autocompletion
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
@@ -118,6 +116,19 @@ local plugins = {
             'rafamadriz/friendly-snippets',
 	},
    },
+   {
+    -- LSP Support
+    'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      { 'folke/neoconf.nvim', cmd = 'Neoconf', config = true },
+      'rafi/neoconf-venom.nvim',
+    },
+   },
+    {
+      'rafi/neoconf-venom.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim', 'folke/neoconf.nvim' },
+    },
    -- Debugging plugins
    'mfussenegger/nvim-dap',
    'mfussenegger/nvim-dap-python',
