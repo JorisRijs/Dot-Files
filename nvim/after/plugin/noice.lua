@@ -1,5 +1,5 @@
 require("noice").setup({
   cmdline = {
-      view = "cmdline",
-    },
+    view = "cmdline",
+  },
 })

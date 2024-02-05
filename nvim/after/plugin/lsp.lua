@@ -96,10 +96,17 @@ lsp_config.pylsp.setup{
           ignore = {'W391'},
           maxLineLength = 100
         },
+        black = {
+          enabled = true,
+          line_length = 88,
+        },
         ruff = {
           enabled = true,
           extendedSelect = {"I"},
         },
+        mypy = {
+          live_mode = true,
+        }
       },
     }
   }
