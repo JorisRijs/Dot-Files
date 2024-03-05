@@ -108,8 +108,8 @@ history = 10000
 multiplier = 3
 
 [shell]
-args = ["--login"]
 program = "/bin/zsh"
+args = ["--login"]
 
 [shell.double_click]
 threshold = 300

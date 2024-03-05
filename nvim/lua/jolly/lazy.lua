@@ -41,7 +41,7 @@ local plugins = {
 	'nvim-lualine/lualine.nvim',
 	dependencies = {'nvim-tree/nvim-web-devicons', opt = true},
    },
-   {'catppuccin/nvim', name = 'catppuccin', lazy=true},
+   {'catppuccin/nvim', name = 'catppuccin', lazy=false},
    { "folke/tokyonight.nvim", lazy = false, priority = 1000,opts = {} },
    'romgrk/barbar.nvim',
    'levouh/tint.nvim',

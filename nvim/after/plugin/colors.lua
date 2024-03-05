@@ -1,5 +1,6 @@
 function ColorMyPencils(color)
-	color = color or "tokyonight-night"
+	-- color = color or "tokyonight-night"
+	color = color or "catppuccin-mocha"
 	vim.cmd.colorscheme(color)
 
 	vim.api.nvim_set_hl(0, "normal", {bg = "none"})
