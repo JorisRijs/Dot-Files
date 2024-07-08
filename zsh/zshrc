@@ -132,15 +132,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source $HOME/.config/zsh/p10k.zsh
-
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-export ZSH_COLORIZE_TOOL=chroma
 
 alias vim="nvim"
 
@@ -172,11 +163,40 @@ if [[ $HOSTNAME == "MacBook-Pro-van-Joris.local" ]]; then
     alias bu="brew update && brew upgrade"
 fi
 
+if [[ $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
+    if [[ -e "${HOME}/.1password/agent.sock" ]]; then
+        export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+    fi
+    alias bu="brew update && brew upgrade"
+    alias mo="make onboard"
+    alias soc="cd /home/jolly/Documents/SOC"
+    alias rule_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/rule.md"
+    alias tune_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/tune.md"
+    alias dotedit="vim ~/Documents/Dot-Files"
+    alias soc="cd ~/Documents/SOC"
+    alias rules="cd ~/Documents/SOC/rules"
+    alias pup="cd ~/Documents/SOC/pipeline-utils-package"
+fi
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 export GPG_TTY=$(tty)
 
+# Source fzf (requirement is that it is installed)
+source <(fzf --zsh)
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source $HOME/.config/zsh/p10k.zsh
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+export ZSH_COLORIZE_TOOL=chroma
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
