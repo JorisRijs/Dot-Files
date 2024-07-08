@@ -1,0 +1,211 @@
+return {
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+  { -- optional completion source for require statements and module annotations
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
+  },
+  -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+  {
+	'VonHeikemen/lsp-zero.nvim',
+	branch = 'v3.x',
+	dependencies = {
+            --- Uncomment these if you want to manage LSP servers from neovim
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+
+            -- Autocompletion
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            -- Snippet Engine & its associated nvim-cmp source
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+            -- Adds a number of user-friendly snippets
+            'rafamadriz/friendly-snippets',
+	},
+    opts = {
+        
+local lsp = require('lsp-zero'),
+local lsp_config = require('lspconfig'),
+
+lsp.preset("recommended"),
+
+
+-- Configure the behavior and keybindings for cmp, which is directly linked to lsp, thus in this file
+local cmp = require('cmp'),
+local luasnip = require('luasnip'),
+require('luasnip.loaders.from_vscode'),
+luasnip.config.setup{},
+
+cmp.setup{
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' }, -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  }),
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+  mapping = cmp.mapping.preset.insert{
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete {},
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  },
+},
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
+}),
+
+lsp.on_attach(function(client, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    local opts = {buffer = bufnr, remap = false}
+
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "<leader>vws", function() vim.lsp.workspace.symbol() end, opts)
+    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set("n", "[d", function() vim.dagnostic.goto_next() end, opts)
+    vim.keymap.set("n", "]d", function() vim.dagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("i", "C-h", function() vim.lsp.buf.signature_help() end, opts)
+end),
+
+lsp_config.pylsp.setup{
+  settings = {
+    pylsp = {
+      configurationSources = {"pydocstyle", "pycodestyle"},
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 100
+        },
+        black = {
+          enabled = true,
+          line_length = 88,
+        },
+        ruff = {
+          enabled = true,
+          extendedSelect = {"I"},
+        },
+        mypy = {
+          live_mode = true,
+        }
+      },
+    }
+  }
+},
+
+lsp_config.pyright.setup({
+  on_attach = lsp.on_attach,
+  capabilities = lsp.capabilities,
+  filetypes = {"python"},
+}),
+
+lsp_config.terraformls.setup({})
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+}),
+lsp_config.lua_ls.setup({}),
+lsp_config.bashls.setup({}),
+lsp_config.dotls.setup({}),
+lsp_config.ltex.setup({}),
+lsp_config.yamlls.setup({}),
+lsp_config.jsonls.setup({}),
+lsp_config.rust_analyzer.setup({}),
+lsp_config.marksman.setup({}),
+
+lsp.setup(),
+
+-- see :help lsp-zero-guide:integrate-with-mason-nvim
+-- to learn how to use mason.nvim with lsp-zero
+require('mason').setup({}),
+require('mason-lspconfig').setup({
+
+    ensure_installed = {
+        'pyright',
+        'lua_ls',
+        'pylsp',
+        'terraformls',
+        'bashls',
+        'dotls',
+        'jsonls',
+        'ltex',
+        'yamlls',
+        'jsonls',
+        'rust_analyzer',
+        'marksman'
+    },
+    handlers = {
+        lsp.default_setup,
+    }
+}),
+
+    }
+  }
+}

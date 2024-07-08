@@ -1,3 +1,2 @@
-
-require("jolly")
-print("Hello World!")
+require 'jolly'
+print 'Hello World!'
