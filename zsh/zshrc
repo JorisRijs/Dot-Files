@@ -147,10 +147,23 @@ alias vim="nvim"
 # Get the hostname of the machine
 HOSTNAME=$(hostname)
 
-# Check if the hostname matches your work laptop
-if [[ $HOSTNAME == "powerbook" ]]; then
-    # Add aliases and configurations specific to your work laptop here
+# Check if the hostname matches your work lapto"Uif [[ $HOSTNAME == "powerbook" ]]; then
+if [[ $HOSTNAME == "Powerbook-Jolly" ]]; then
     alias mo="make onboard"
+    alias soc="cd /home/jolly/Documents/SOC"
+    alias gitdl="cd /home/jolly/Downloads/git"
+    alias tfmdr="cd /home/jolly/Documents/Terraform/gcp-tf-service-mdr"
+    alias rule_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/rule.md"
+    alias tune_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/tune.md"
+    alias dotedit="vim ~/Documents/Dot-Files"
+    alias soc="cd ~/Documents/SOC"
+    alias rules="cd ~/Documents/SOC/rules"
+    alias pup="cd ~/Documents/SOC/pipeline-utils-package"
+    alias aptupd="sudo apt-get update && sudo apt update"
+    alias aptupg="sudo apt-get upgrade -y && sudo apt upgrasy -y"
+
+    # Exports
+    export PATH="/home/jolly/.local/bin:$PATH"
 fi
 
 # Check if the hostname matches your personal laptop
