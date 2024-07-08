@@ -1,6 +1,7 @@
-require("jolly.remap")
-require("jolly.lazy")
-require("jolly.autocmd")
+require 'jolly.lazy'
+require 'jolly.remap'
+require 'jolly.autocmd'
+require 'jolly.colors'
 
 -- Show matching brackets
 vim.o.showmatch = true
@@ -9,10 +10,10 @@ vim.o.showmatch = true
 vim.o.ignorecase = true
 
 -- Middle-click paste with mouse
-vim.o.mouse = "v"
+vim.o.mouse = 'v'
 
 -- Highlight search results
-vim.o.hlsearch = false 
+vim.o.hlsearch = false
 
 -- Indent a new line the same amount as the line just typed
 vim.o.autoindent = true
@@ -32,10 +33,10 @@ vim.o.shiftwidth = 4
 -- See multiple spaces as tabstops so <BS> does the right thing
 vim.o.softtabstop = 4
 
-vim.o.mouse = "a"
+vim.o.mouse = 'a'
 
-vim.wo.relativenumber=true
+vim.wo.relativenumber = true
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option('clipboard', 'unnamed')
 
 vim.o.termguicolors = true

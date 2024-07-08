@@ -1,0 +1,3 @@
+- Move from nvim-tree to neotree
+- Create installation script
+- Reduce ltex messgages
