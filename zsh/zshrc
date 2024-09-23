@@ -161,6 +161,8 @@ fi
 if [[ $HOSTNAME == "MacBook-Pro-van-Joris.local" ]]; then
     # Add aliases and configurations specific to your personal laptop here
     alias bu="brew update && brew upgrade"
+    alias desosa="cd ~/Documents/1.\ Projects/MSC-CS/Courses/CS4505/desosa2024x"
+    alias msc="cd ~/Documents/1.\ Projects/MSC-CS"
 fi
 
 if [[ $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
