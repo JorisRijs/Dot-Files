@@ -180,6 +180,7 @@ if [[ $HOSTNAME == "Joriss-Air" || $HOSTNAME == "Joriss-MacBook-Air.local" ]]; t
     alias soc="cd ~/Documents/SOC"
     alias rules="cd ~/Documents/SOC/rules"
     alias pup="cd ~/Documents/SOC/pipeline-utils-package"
+    alias projects="cd ~/Documents/1.\ Projects/"
 fi
 
 
