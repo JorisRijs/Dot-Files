@@ -163,13 +163,15 @@ if [[ $HOSTNAME == "MacBook-Pro-van-Joris.local" ]]; then
     alias bu="brew update && brew upgrade"
 fi
 
-if [[ $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
+if [[ $HOSTNAME == "Joriss-Air" || $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
     if [[ -e "${HOME}/.1password/agent.sock" ]]; then
         export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     fi
     alias bu="brew update && brew upgrade"
-    alias mo="make onboard"
-    alias soc="cd /home/jolly/Documents/SOC"
+    alias mo='make onboard SSH_AUTH_SOCK="$(colima ssh printenv SSH_AUTH_SOCK)"'
+    alias mdev='make dev SSH_AUTH_SOCK="$(colima ssh printenv SSH_AUTH_SOCK)"'
+    alias madmin='make admin SSH_AUTH_SOCK="$(colima ssh printenv SSH_AUTH_SOCK)"'
+    alias soc="cd ~/Documents/SOC"
     alias rule_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/rule.md"
     alias tune_pr="gh pr create --fill --body-file .github/PULL_REQUEST_TEMPLATE/tune.md"
     alias dotedit="vim ~/Documents/Dot-Files"

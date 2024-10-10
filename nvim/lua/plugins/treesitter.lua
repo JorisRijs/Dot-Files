@@ -1,10 +1,11 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
     opts = {
 
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = { 'markdown_inline', 'python', 'java', 'hcl', 'c', 'latex', 'lua', 'vim', 'vimdoc', 'query', 'vim' },
+      ensure_installed = { 'markdown_inline', 'python', 'java', 'hcl', 'c', 'latex', 'lua', 'vim', 'vimdoc', 'query', 'vim' , 'terraform'},
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
@@ -28,6 +29,12 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
+      indent = { enable = true, disable = { 'ruby' } },
     },
+    config = function(_, opts)
+        require('nvim-treesitter.install').prefer_git = ture
+        --@diagnostic disable-next-line: missing-fields
+        require('nvim-treesitter.configs').setup(opts)
+    end,
   },
 }

@@ -118,7 +118,22 @@ lsp_config.pyright.setup({
   filetypes = {"python"},
 })
 
-lsp_config.terraformls.setup({})
+lsp_config.terraformls.setup({
+  init_options = {
+    terraform = {
+      path = "/opt/homebrew/bin/terraform"
+    }
+  },
+  on_attach = function(client, bufnr)
+        -- Your custom attach function if you have one
+  end,
+  cmd = {"terraform-ls", "serve"},
+  filetypes = {"terraform", "tf"},
+  root_dir = function(fname)
+      return lsp_config.util.root_pattern(".terraform", "main.tf")(fname) or lsp_config.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+  end,
+})
+
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
   callback = function()
@@ -133,6 +148,7 @@ lsp_config.yamlls.setup({})
 lsp_config.jsonls.setup({})
 lsp_config.rust_analyzer.setup({})
 lsp_config.marksman.setup({})
+lsp_config.terraform_lsp.setup({})
 
 lsp.setup()
 

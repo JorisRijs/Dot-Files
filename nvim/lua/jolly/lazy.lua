@@ -148,6 +148,8 @@ local plugins = {
     -- Navigation related plugins
     'nacro90/numb.nvim',
 
+    'github/copilot.vim',
+
 }
 
 local opts = {}
