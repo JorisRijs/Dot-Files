@@ -133,7 +133,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 
-alias vim="nvim"
+alias vim='NVIM_APPNAME="kickstart-nvim" nvim'
 
 # Get the hostname of the machine
 HOSTNAME=$(hostname)
@@ -163,6 +163,9 @@ if [[ $HOSTNAME == "MacBook-Pro-van-Joris.local" ]]; then
     alias bu="brew update && brew upgrade"
     alias desosa="cd ~/Documents/1.\ Projects/MSC-CS/Courses/CS4505/desosa2024x"
     alias msc="cd ~/Documents/1.\ Projects/MSC-CS"
+    alias dotedit="vim ~/Documents/Dev_env/Dot-Files"
+    alias projects="cd ~/Documents/1.\ Projects/"
+    alias resources="cd ~/Documents/3.\ Resources/"
 fi
 
 if [[ $HOSTNAME == "Joriss-Air" || $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
