@@ -166,6 +166,7 @@ if [[ $HOSTNAME == "MacBook-Pro-van-Joris.local" ]]; then
     alias dotedit="vim ~/Documents/Dev_env/Dot-Files"
     alias projects="cd ~/Documents/1.\ Projects/"
     alias resources="cd ~/Documents/3.\ Resources/"
+    source ~/Documents/1.\ Projects/MSC-CS/Courses/CS4505/team-47/.env
 fi
 
 if [[ $HOSTNAME == "Joriss-Air" || $HOSTNAME == "Joriss-MacBook-Air.local" ]]; then
